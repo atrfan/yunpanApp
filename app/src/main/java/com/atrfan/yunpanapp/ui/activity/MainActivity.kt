@@ -2,8 +2,6 @@ package com.atrfan.yunpanapp.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.atrfan.yunpanapp.databinding.ActivityMainBinding
 import com.atrfan.yunpanapp.entity.UserEntity

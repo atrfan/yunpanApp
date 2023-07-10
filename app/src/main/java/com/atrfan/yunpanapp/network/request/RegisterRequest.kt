@@ -8,15 +8,16 @@ import com.atrfan.yunpanapp.network.client.HttpFactory
 
 object RegisterRequest {
    private val client = HttpFactory.client
-    suspend fun register(username: String, password: String): RegisterEntity {
-//        Log.d(TAG,"in the method")
-        val service = client.create(RegisterApi::class.java)
-        val resp = service.register(username, password).execute().body()
-//        Log.d(TAG,resp.toString())
-        resp?.data?.let {
-//            Log.d(LOGIN_TAG,it.toString())
-            return RegisterEntity(it.countSize, it.id, it.username, it.password, it.totalSize)
+    suspend fun register(username: String, password: String): String {
+        return try{
+            val service = client.create(RegisterApi::class.java)
+            Log.d(LOGIN_TAG, "register:username:$username,password:$password")
+            val resp = service.register(username, password).execute().body()
+            val str = resp?.string()
+            Log.d("TESTMETHOD",resp?.string().toString())
+            str ?: ""
+        } catch (e:Exception){
+            ""
         }
-        return RegisterEntity("defalut",-1,"fadas","fadfasfd","fafsda")
     }
 }

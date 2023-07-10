@@ -70,14 +70,14 @@ class RegisterFragment : Fragment() {
                 // TODO 注册相关请求
                 WaitDialog.show(R.string.registering)
                 CoroutineScope(Dispatchers.Main).launch {
-                    val registerEntity = withContext(Dispatchers.IO) {
+                    val response = withContext(Dispatchers.IO) {
                         RegisterRequest.register(
                             binding.registerUsernameInputText.text.toString(),
                             binding.registerPasswordInputText.text.toString()
                         )
                     }
                     WaitDialog.dismiss()
-                    if (registerEntity.id == -1) {
+                    if (response=="" || !response.contains("扫一扫登录")) {
                         Toast.makeText(
                             this@RegisterFragment.context,
                             "注册失败",

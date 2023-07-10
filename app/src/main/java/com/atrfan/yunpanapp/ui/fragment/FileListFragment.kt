@@ -1,10 +1,8 @@
 package com.atrfan.yunpanapp.ui.fragment
 
 import android.content.ContentResolver
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +24,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 class FileListFragment : Fragment() {
 
@@ -50,7 +47,6 @@ class FileListFragment : Fragment() {
         binding = FragmentFileListBinding.inflate(inflater, container, false)
         loadingUi("/",MainActivity.user!!.username)
         binding.uploadButton.setOnClickListener {
-
             // 打开文件选择器
             launcher.launch("*/*")
         }
@@ -104,6 +100,8 @@ class FileListFragment : Fragment() {
             }
             Log.d("FileListFragment",uploadResult.toString())
             WaitDialog.dismiss()
+
+            loadingUi("/",MainActivity.user!!.username)
         }
     }
 
